@@ -1,0 +1,327 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.*;
+public class INGCollege 
+    private JLabel
+            labelcourseID,labelcourseName,labelduration,labelLevel,labelCredit,labelNoOfAssessments,labelLecturerName,labelCourseLeader,labelstartdate1,labelcompletedate1;
+    private JLabel
+            labelcourseID1,labelcourseName1,labelduration1,labelprerequisite,labelCourseLeader1,labelInstructorName,labelexamDate,labelstartdate2,labelcompletedate2;
+    private JTextField
+            txtcourseID,txtcourseName,txtduration,txtlevel,txtCredit,txtCourseLeader,txtNoOfAssessments,txtstartdate1,txtcompletiondate1, txtLecturerName;
+    private JTextField
+            txtcourseID1,txtcourseName1,txtduration1,txtprerequisite,txtcourseleader1,txtInstructorName1,txtexamDate,txtstartdate2,txtcompletiondate2;
+    private JFrame frm;
+    private JButton btnaddAcademicCourse,btnaddNonAcademicCourse,btnregisterAcademicCourse,btnregisterNonAcademicCourse,btnremoveNonAcademicCourse,btndisplay,btnClear;
+    private JPanel p1,p2;
+    
+    // Arraylist created
+    private ArrayList<Course> list = new ArrayList<Course>();
+    ;
+
+
+    public void Form(){
+        frm = new JFrame("Course");//creating frame
+        frm.setLayout(null);
+        frm.setSize(700,750);//Setting the size of the frame
+        frm.setResizable(false);
+
+        p1 = new JPanel();//creating panel1
+        frm.add(p1);
+       
+        p2 = new JPanel();//creating panel2
+        frm.add(p2);
+
+        //creating GUI include Label TextField and Buttons with appropriate bounds
+        labelcourseID = new JLabel("Course ID :");
+        labelcourseName = new JLabel("Course Name :");
+        labelduration = new JLabel("Course Duration :");
+        labelLevel = new JLabel("Level :");
+        labelCredit = new JLabel("Credit :");
+        labelCourseLeader = new JLabel("Course Leader :");
+        labelLecturerName =new JLabel("Lecturer Name:");
+        labelNoOfAssessments =new JLabel("No of Assessments: ");
+        labelstartdate1 =new JLabel("Start Date :");
+        labelcompletedate1 =new JLabel("Complete Date :");
+
+        labelcourseID1 = new JLabel("CourseID : ");
+        labelcourseName1 = new JLabel("Course Name :");
+        labelduration1 = new JLabel("Course Duration :");
+        labelprerequisite = new JLabel("Prerequisite:");
+        labelCourseLeader1 = new JLabel("Course Leader :");
+        labelInstructorName = new JLabel("Instructor Name:");
+        labelexamDate = new JLabel("Exam Date :");
+        labelstartdate2 = new JLabel("Start Date :");
+        labelcompletedate2 = new JLabel("Complete Date :");
+
+
+        txtcourseID = new JTextField();
+        txtcourseName = new JTextField();
+        txtduration = new JTextField();
+        txtlevel = new JTextField();
+        txtCredit = new JTextField();
+        txtCourseLeader = new JTextField();
+        txtNoOfAssessments = new JTextField();
+        txtstartdate1 = new JTextField();
+        txtcompletiondate1 = new JTextField();
+        txtLecturerName = new JTextField();
+
+        txtcourseID1= new JTextField();
+        txtcourseName1 = new JTextField();
+        txtduration1 = new JTextField();
+        txtprerequisite = new JTextField();
+        txtcourseleader1 = new JTextField();
+        txtInstructorName1= new JTextField();
+        txtexamDate = new JTextField();
+        txtstartdate2 = new JTextField();
+        txtcompletiondate2 = new JTextField();
+        
+        txtcourseID1.setBounds(120,30,520,20);
+        txtcourseName1.setBounds(120,60,520,20);
+        txtduration1.setBounds(120,90,200,20);
+        txtprerequisite.setBounds(440,90,200,20);
+        txtInstructorName1.setBounds(120,210,520,20);
+        txtcourseleader1.setBounds(120,240,200,20);
+        txtexamDate.setBounds(440,240,200,20);
+        txtstartdate2.setBounds(120,270,200,20);
+        txtcompletiondate2.setBounds(120,300,520,20);
+
+
+        p1.add(labelcourseID);
+        p1.add(txtcourseID);
+        p1.add(labelcourseName);
+        p1.add(txtcourseName);
+        p1.add(labelduration);
+        p1.add(txtduration);
+        p1.add(labelLevel);
+        p1.add(txtlevel);
+        p1.add(labelCredit);
+        p1.add(txtCredit);
+        p1.add(labelCourseLeader);
+        p1.add(txtCourseLeader);
+        p1.add(labelLecturerName);
+        p1.add(txtLecturerName);
+        p1.add(labelNoOfAssessments);
+        p1.add(txtNoOfAssessments);
+        p1.add(labelstartdate1);
+        p1.add(txtstartdate1);
+        p1.add(labelcompletedate1);
+        p1.add(txtcompletiondate1);
+
+        p2.add(labelcourseID1);
+        p2.add(txtcourseID1);
+        p2.add(labelcourseName1);
+        p2.add(txtcourseName1);
+        p2.add(labelduration1);
+        p2.add(txtduration1);
+        p2.add(labelprerequisite);
+        p2.add(txtprerequisite);
+        p2.add(labelCourseLeader1);
+        p2.add(txtcourseleader1);
+        p2.add(labelInstructorName);
+        p2.add(txtInstructorName1);
+        p2.add(labelexamDate);
+        p2.add(txtexamDate);
+        p2.add(labelstartdate2);
+        p2.add(txtstartdate2);
+        p2.add(labelcompletedate2);
+        p2.add(txtcompletiondate2);
+        btnaddAcademicCourse = new JButton("ADD");
+        btnaddNonAcademicCourse= new JButton("ADD");
+        btnregisterAcademicCourse = new JButton("Register Academic Course");
+        btndisplay = new JButton("Display All");
+        btnregisterNonAcademicCourse = new JButton("Register Non Academic Course");
+        btnremoveNonAcademicCourse = new JButton("Remove Non-Academic Course");
+        btnClear = new JButton("Clear");
+
+        btnaddAcademicCourse.setBounds(440,120,200,20);
+        btnaddNonAcademicCourse.setBounds(200,181,200,20);
+        btnregisterAcademicCourse.setBounds(440,240,200,20);
+        btndisplay.setBounds(440,180,200,20);
+        btnregisterNonAcademicCourse.setBounds(426,330,212,20);
+        btnremoveNonAcademicCourse.setBounds(210,360,210,20);
+        btnClear.setBounds(426,360,212,20);
+
+        
+
+        frm.setVisible(true);//the frame to visibility
+
+        btnaddAcademicCourse.addActionListener(this);
+        btndisplay.addActionListener(this);
+        btnregisterAcademicCourse.addActionListener(this);
+        btnClear.addActionListener(this);
+        btnregisterNonAcademicCourse.addActionListener(this);
+        btnaddNonAcademicCourse.addActionListener(this);
+        btnremoveNonAcademicCourse.addActionListener(this);
+
+    }
+    //overriding the base class method
+    public void actionPerformed(ActionEvent e){
+        if (e.getSource() == btnaddAcademicCourse){
+            addCourseToAcademicCourse();
+        }
+        if (e.getSource()==btndisplay){
+            displayAll();
+        }
+        if (e.getSource() == btnregisterAcademicCourse){
+            registerToAcademicCourse();
+        }
+        if (e.getSource() == btnregisterNonAcademicCourse){
+            registerToNonAcademicCourse();
+        }
+        if (e.getSource() == btnClear){
+            clear();
+        }
+        if (e.getSource()==btnaddNonAcademicCourse){
+            addCourseToNonAcademicCourse();
+        }
+        if (e.getSource() == btnremoveNonAcademicCourse){
+            removeCourse();
+        }
+    }
+
+
+    //method of addCourseToAcaddemic
+    public void addCourseToAcademicCourse()
+    {
+        try{
+
+            if (txtcourseID.getText().isEmpty() || txtcourseName.getText().isEmpty()|| txtduration.getText().isEmpty()|| txtlevel.getText().isEmpty() || txtCredit.getText().isEmpty() || txtNoOfAssessments.getText().isEmpty()){
+                throw new NoSuchFieldException();
+
+            }
+            else {
+                
+                JOptionPane.showMessageDialog(frm, "Successfully added the Academic Course");
+            }
+        }
+        catch (Exception F) {
+            JOptionPane.showMessageDialog(frm, "duration, courseid, coursename, level, credit, noofassessments should not be empty and noof assessments should be in decimal number", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }
+
+    //method of addCourseToNonAcademic
+    public void addCourseToNonAcademicCourse(){
+        try {
+            if (txtcourseID1.getText().isEmpty() || txtcourseName1.getText().isEmpty() || txtduration1.getText().isEmpty()|| txtprerequisite.getText().isEmpty()){
+               throw new NoSuchFieldException();
+            }
+            else {
+               
+                JOptionPane.showMessageDialog(frm, "Successfully added the Non Academic Course");
+
+            }
+        }
+        catch (Exception e){
+            JOptionPane.showMessageDialog(frm, "courseid coursename, duration and prerequisite should not be empty and duration should be in number ", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+        }
+        }
+    //method of Register Academic Course
+    public void registerToAcademicCourse(){
+        try{
+            int courseID = Integer.parseInt(txtcourseID.getText());
+            String courseLeader = txtCourseLeader.getText();
+            String lecturerName = txtLecturerName.getText();
+            String StartingDate = txtstartdate1.getText();
+            String CompletionDate = txtcompletiondate1.getText();
+            else {
+                        JOptionPane.showMessageDialog(frm, "Not Academic Course");
+                    }
+                }
+
+        }catch(Exception E){
+            JOptionPane.showMessageDialog(frm, "Input the correct value");
+        }
+    }
+    //method of Register Non Academic Course
+    public void registerToNonAcademicCourse(){
+        try {
+            int courseID = Integer.parseInt(txtcourseID1.getText())-1;
+            String courseLeader = txtCourseLeader.getText();
+            String instructorName = txtInstructorName1.getText();
+            String startDate = txtstartdate1.getText();
+            String CompletionsDate = txtcompletiondate2.getText();
+            String examDate = txtexamDate.getText();
+
+            if (courseID > list.size()) {
+                JOptionPane.showMessageDialog(frm, "Invalid");
+            } else {
+                        JOptionPane.showMessageDialog(frm, "Not of Non AcademicCourse");
+                    }
+                }
+
+
+        }catch(Exception E){
+            JOptionPane.showMessageDialog(frm, "Input the correct value");
+        }
+    }
+    //method of Remove Non Academic Course
+    public void removeCourse() {
+        try {
+            if (courseID > list.size()){
+                JOptionPane.showMessageDialog(frm, "Invalid");
+            }
+            else {
+                Course obj = list.get(courseID);
+                if (obj instanceof NonAcademicCourse) {
+                    NonAcademicCourse NAC = (NonAcademicCourse)obj;
+                    JOptionPane.showMessageDialog(frm, "Successfully removed the Non-academic Course");
+            }
+                else {
+                    JOptionPane.showMessageDialog(frm, "Not of Non AcademicCourse");
+                }
+            }
+
+
+        }catch(Exception E){
+            JOptionPane.showMessageDialog(frm, "Input the correct value");
+        }
+    }
+    //method of displayAll
+    public void displayAll() {
+        for (Course obj : list) {
+            if (obj instanceof AcademicCourse) {
+                AcademicCourse academiccourseobj = (AcademicCourse) obj;
+                System.out.println("Academic Course");
+                System.out.println("Course ID=" + list.indexOf(obj));
+                System.out.println();
+                
+            } else if (obj instanceof NonAcademicCourse) {
+                NonAcademicCourse nonacademiccourseObj = (NonAcademicCourse) obj;
+                System.out.println("Non-Academic Course");
+                System.out.println("Course ID = " + list.indexOf(obj));
+                System.out.println();
+                
+            }
+        }
+    }
+    //method of clear
+    public void clear(){
+        txtcourseID.setText("");
+        txtcourseName.setText("");
+        txtduration.setText("");
+        txtlevel.setText("");
+        txtCredit.setText("");
+        txtNoOfAssessments.setText("");
+        txtCourseLeader.setText("");
+        txtstartdate1.setText("");
+        txtcompletiondate1.setText("");
+
+        txtcourseID1.setText("");
+        txtcourseName1.setText("");
+        txtduration1.setText("");
+        txtprerequisite.setText("");
+        txtInstructorName1.setText("");
+        txtcourseleader1.setText("");
+        txtexamDate.setText("");
+        txtstartdate2.setText("");
+        txtcompletiondate2.setText("");
+    }
+    //main method
+    public static void main (String []args){
+        INGCollege a = new INGCollege();
+        a.Form();
+    }
+}
+
